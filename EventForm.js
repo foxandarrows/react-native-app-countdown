@@ -6,6 +6,8 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
+import DateTimePicker from 'react-native-modal-datetime-picker';
+import { formatDate } from './api';
 
 const styles = StyleSheet.create({
   fieldContainer: {
@@ -18,13 +20,32 @@ const styles = StyleSheet.create({
     margin: 0,
     marginRight: 7,
     paddingLeft: 10,
-  }
+  },
+  button: {
+    height: 50,
+    backgroundColor: '#48BBEC',
+    borderColor: '#48BBEC',
+    alignSelf: 'stretch',
+    margin: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  borderTop: {
+    borderColor: '#edeeef',
+    borderTopWidth: 0.5,
+  },
 })
 
 class EventForm extends Component {
 
   state = {
     title: null,
+    date: ''
   }
 
   static navigationOptions = {
@@ -42,6 +63,26 @@ class EventForm extends Component {
     });
   }
 
+  handleDatePress = () => {
+    this.setState({
+      showDatePicker: true
+    });
+  }
+
+  handleDatePicked = (date) => {
+    this.setState({
+      date,
+    })
+
+    this.handleDatePickerHide();
+  }
+
+  handleDatePickerHide = () => {
+    this.setState({
+      showDatePicker: false
+    })
+  }
+
   render() {
     return (
       <View
@@ -57,11 +98,26 @@ class EventForm extends Component {
             value={this.state.title}
             onChangeText={this.handleChangeTitle}
           />
+          <TextInput
+            style={[styles.text, styles.borderTop]}
+            placeholder="Event date"
+            spellCheck={false}
+            value={formatDate(this.state.date.toString())}
+            editable={!this.state.showDatePicker}
+            onFocus={this.handleDatePress}
+          />
+          <DateTimePicker
+            isVisible={this.state.showDatePicker}
+            mode="datetime"
+            onConfirm={this.handleDatePicked}
+            onCancel={this.handleDatePickerHide}
+          />
         </View>
         <TouchableHighlight
           onPress={this.handleAddEvent}
+          style={styles.button}
         >
-          <Text>Add</Text>
+          <Text style={styles.buttonText}>Add</Text>
         </TouchableHighlight>
       </View>
     );
