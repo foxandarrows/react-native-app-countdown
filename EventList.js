@@ -29,22 +29,18 @@ class EventList extends Component {
 
   componentDidMount() {
 
-    console.log(this.state.events)
+    // console.log("state events", this.state.events)
 
-    // setInterval(() => {
-    this.setState({
-      events: this.state.events.map(evt => ({
-        ...evt,
-        timer: Date.now(),
-      })),
-    });
-    // }, 1000);
+    setInterval(() => {
+      this.setState({
+        events: this.state.events.map(evt => ({
+          ...evt,
+          timer: Date.now(),
+        })),
+      });
+    }, 1000);
 
-    console.log(getEvents())
-
-    getEvents().then(events => this.setState({ events: events }));
-
-    console.log(this.state.events)
+    getEvents().then(events => this.setState({ events }));
   }
 
   handleAddEvent = () => {
