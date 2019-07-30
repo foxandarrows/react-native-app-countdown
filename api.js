@@ -3,21 +3,26 @@ import moment from 'moment';
 import Constants from 'expo-constants';
 import uuid from 'uuid';
 
-
 const { manifest } = Constants;
+console.log(Constants);
 const api = manifest.packagerOpts.dev
   ? manifest.debuggerHost.split(`:`).shift().concat(`:3000`)
   : `api.example.com`;
 
 const url = `http://${api}/events`;
-console.log('url', url)
+// http://192.168.5.112:19001/
 
 export function getEvents() {
   return fetch(url)
-    .then((response) => { console.log(response) })
-    .then(response => response.json())
-    .then(console.log(url))
-    .then(events => events.map(e => ({ ...e, date: new Date(e.date) })))
+    .then(response => {
+      console.log(response)
+      return response.json()
+    })
+    .then(events => {
+      console.log(events);
+      return events.map(e => ({ ...e, date: new Date(e.date) }))
+    })
+    .catch(e => console.error(e))
 }
 
 export function saveEvent({ title, date }) {
