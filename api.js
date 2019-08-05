@@ -5,14 +5,27 @@ import uuid from 'uuid';
 
 const { manifest } = Constants;
 console.log(Constants);
-const api = manifest.packagerOpts.dev
-  ? manifest.debuggerHost.split(`:`).shift().concat(`:3000`)
-  : `api.example.com`;
 
-const url = `http://${api}/events`;
-// http://192.168.5.112:19001/
+/*
+  (While in dev (local))
+  Replace API_HOST by your ip:
+  - Open a terminal
+  - Type:
+      ip addr show
+  - Look for your wifi interface (likely wlp1s0 or whatever...)
+  - Copy the IP in `inet` section. (XXX.YYY.ZZZ.AAA, without the /24 part)
+      eg. 192.168.1.42
+  - ???
+  - PROFIT!!!1!!1oneone!
+
+  Don't forget to keep all devices on the same network (wifi, don't use ).
+*/
+const API_HOST = '192.168.5.112';
+const url = `http://${API_HOST}:3000/events`;
 
 export function getEvents() {
+  console.log('#getEvents');
+  console.log(url);
   return fetch(url)
     .then(response => {
       console.log(response)
