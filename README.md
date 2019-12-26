@@ -9,6 +9,8 @@ React Native App Countdown made up using Expo CLI
 - Replace API_HOST by your own IP Adress
 - Don't forget to be on the same WIFI for the both devices (phone and computer)
 
+ENJOY !
+
 ![DEMO](https://github.com/foxandarrows/react-native-app-countdown/blob/master/eventList.jpg)
 
-ENJOY !
+
