@@ -11,7 +11,6 @@ React Native App Countdown made up using Expo CLI
 
 ENJOY !
 
-![TO SEE THE COUNTDOWN IN VIDEO, FOLLOW THIS LINK](https://www.behance.net/portfolio/editor?project_id=89885377)
-![DEMO](https://github.com/foxandarrows/react-native-app-countdown/blob/master/eventList.jpg)
+[![DEMO](https://github.com/foxandarrows/react-native-app-countdown/blob/master/eventList.jpg)](https://www.behance.net/portfolio/editor?project_id=89885377)
 
 
